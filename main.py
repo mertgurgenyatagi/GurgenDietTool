@@ -55,6 +55,15 @@ class App(tk.Tk):
 
         self.title("GurgenDietTool")
         self.geometry("800x600")
+        
+        # Set application icon
+        try:
+            # Load PNG icon using PhotoImage
+            icon = tk.PhotoImage(file="icons/apple.png")
+            self.iconphoto(False, icon)
+        except Exception as e:
+            # Fallback if icon file is not found
+            print(f"Could not load icon: {e}")
 
         # Store food items and CSV file path
         self.food_items = []
