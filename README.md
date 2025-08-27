@@ -30,11 +30,18 @@ A comprehensive nutrition planning and tracking application built with Python an
    python main.py
    ```
 
+## Quick Start
+
+For immediate use, a pre-built executable is available in the main folder:
+- **Double-click `GurgenDietTool.exe`** to run the application directly
+- No Python installation required!
+
 ## Project Structure
 
 ```
 GurgenDietTool/
 ├── main.py                    # Main application file
+├── GurgenDietTool.exe          # Pre-built executable (not tracked in git)
 ├── GurgenDietTool.spec        # PyInstaller build configuration
 ├── data/                      # Data files
 │   ├── food_items.csv         # Food nutritional database (template)
