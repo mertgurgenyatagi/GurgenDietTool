@@ -34,15 +34,19 @@ A comprehensive nutrition planning and tracking application built with Python an
 
 ```
 GurgenDietTool/
-├── main.py                 # Main application file
-├── data/                   # Data files
-│   ├── food_items.csv      # Food nutritional database
-│   ├── nutrient_modes.csv  # Color coding configuration
-│   └── units.csv           # Unit definitions
-├── templates/              # Template files
-│   └── plan_template.csv   # Template for new plans
-├── plans/                  # User meal plans (not tracked)
-└── README.md              # This file
+├── main.py                    # Main application file
+├── GurgenDietTool.spec        # PyInstaller build configuration
+├── data/                      # Data files
+│   ├── food_items.csv         # Food nutritional database (template)
+│   ├── nutrient_modes.csv     # Color coding configuration
+│   └── units.csv              # Unit definitions
+├── templates/                 # Template files
+│   └── plan_template.csv      # Template for new plans
+├── icons/                     # Application icons
+│   ├── apple.png              # Application icon (PNG)
+│   └── apple.ico              # Windows executable icon
+├── plans/                     # User meal plans (gitignored)
+└── README.md                  # Documentation
 ```
 
 ## Usage
@@ -53,12 +57,29 @@ GurgenDietTool/
 4. **Edit Amounts**: Modify serving sizes with automatic recalculation
 5. **Track Progress**: Monitor nutritional goals with color-coded indicators
 
+## Building Executable
+
+To create a standalone executable:
+
+1. Install PyInstaller:
+   ```bash
+   pip install pyinstaller
+   ```
+
+2. Build the executable:
+   ```bash
+   pyinstaller GurgenDietTool.spec
+   ```
+
+3. Find the executable in the `dist/` directory
+
 ## File Management
 
-- **Food Database**: `data/food_items.csv` - Central nutritional database
-- **Plans**: `plans/` directory - Individual meal plans (auto-created)
+- **Food Database**: `data/food_items.csv` - Central nutritional database (custom data not tracked)
+- **Plans**: `plans/` directory - Individual meal plans (gitignored for privacy)
 - **Templates**: `templates/plan_template.csv` - Template for new plans
 - **Configuration**: `data/nutrient_modes.csv` - Color coding rules
+- **Icons**: `icons/` directory - Application branding assets
 
 ## Development
 
