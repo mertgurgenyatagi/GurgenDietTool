@@ -5,8 +5,18 @@ from tkinter import simpledialog
 import csv
 import os
 import io
+import sys
 import pandas as pd
 from tksheet import Sheet
+
+def get_base_path():
+    """Get the base path for data files - works for both script and executable"""
+    if getattr(sys, 'frozen', False):
+        # Running as executable
+        return sys._MEIPASS
+    else:
+        # Running as script
+        return os.path.dirname(os.path.abspath(__file__))
 
 # Shared nutrient fields (name, unit)
 NUTRIENT_FIELDS = [
@@ -59,7 +69,8 @@ class App(tk.Tk):
         # Set application icon
         try:
             # Load PNG icon using PhotoImage
-            icon = tk.PhotoImage(file="icons/apple.png")
+            icon_path = os.path.join(get_base_path(), "icons", "apple.png")
+            icon = tk.PhotoImage(file=icon_path)
             self.iconphoto(False, icon)
         except Exception as e:
             # Fallback if icon file is not found
@@ -67,7 +78,7 @@ class App(tk.Tk):
 
         # Store food items and CSV file path
         self.food_items = []
-        self.csv_file = "data/food_items.csv"
+        self.csv_file = os.path.join(get_base_path(), "data", "food_items.csv")
 
         # Store plans and CSV path
         self.plans_dir = "plans"
@@ -341,7 +352,8 @@ class App(tk.Tk):
 
         try:
             # Read the hardcoded rows from the template
-            hardcoded_df = pd.read_csv("templates/plan_template.csv")
+            template_path = os.path.join(get_base_path(), "templates", "plan_template.csv")
+            hardcoded_df = pd.read_csv(template_path)
             
             # Create a new DataFrame for the plan
             plan_df = hardcoded_df.copy()
@@ -537,7 +549,8 @@ class App(tk.Tk):
     def load_nutrient_modes(self):
         """Load nutrient modes from data/nutrient_modes.csv"""
         try:
-            modes_df = pd.read_csv("data/nutrient_modes.csv")
+            modes_path = os.path.join(get_base_path(), "data", "nutrient_modes.csv")
+            modes_df = pd.read_csv(modes_path)
             self.nutrient_modes = {}
             
             # Get headers and modes
